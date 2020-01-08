@@ -1,0 +1,166 @@
+/* Exercise 1 
+input: array;
+output: array;
+*/
+
+function tallEnoughToRide(array){
+  var outputArr = [];
+  for (var i = 0; i < array.length; i++){
+    var currentObj = array[i];
+    for (var key in currentObj){
+      if (currentObj.heightInInches >= 48){
+        outputArr.push(currentObj.name);
+      }
+    }
+  }
+  return outputArr;
+}
+
+/* Exercise 2 
+input: array;
+output：string;
+*/
+
+function tallestPerson(array){
+  for (var i = 0; i < array.length; i++){
+    var tallest = array[0].heightInInches
+    var curObj = array[i];
+    for (var key in curObj){
+      if (curObj.heightInInches > tallest){
+        tallest = curObj.heightInInches;
+        var string = curObj.name + ' at ' + tallest + ' inches';
+      }
+    }
+  }
+  return string;
+}
+
+/* Exercise 3 
+input: array;
+output：bool;
+*/
+
+function orderAVegetarianDish(array){
+  for ( var i = 0; i < array.length; i++){
+    var curObj = array[i];
+    for (var key in curObj){
+      if (curObj.mealPreferences === "vegetarian"){
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+/* Exercise 4 
+input: array;
+output：string;
+*/
+
+function shoppingSummary(array){
+  var itemAmount = arrray.length - 1;
+  var sum = 0;
+  for (var i = 0; i < array.length; i ++){
+    var curObj = array[i];
+    for (var key in curObj){
+      sum += curObj.price;
+    }
+  }
+  return 'I got ' + itemAmount + ' items at $' + sum;
+}
+
+/* Exercise 5 
+input: array;
+output：array deleted with the most expensive item;
+*/
+
+function removeMostExpensive(array){
+  var mostExpPri = array[0].price;
+  var mostExpArrInd = 0; 
+  for (var i = 0; i < array.length; i++){
+    var curObj = array[i];
+    for (var key in curObj){
+      if (curObj.price > mostExpPri){
+        mostExpPri = curObj.price;
+        mostExpArrInd = i;
+      }
+    }
+  }
+  delete array[mostExpArrInd];
+  return array;
+}
+
+//test case 
+function assert(actual, expected, testName){
+  if (JSON.stringify(actual) === JSON.stringify(expected)){
+    console.log(testName + 'Passed');
+  }else{
+    console.log(testName + ' Failed. Expected ' + JSON.stringify(expected) + ' but got ' + JSON.stringify(actual));
+  }
+}
+var array = 
+[
+  {
+    item: "rice",
+    price: 12.75,
+    weightInPounds: 20
+  },
+  {
+    item: "chicken",
+    price: 6.99,
+    weightInPounds: 1.25
+  },
+  {
+    item: "cookware",
+    price: 79.99,
+    weightInPounds: 35
+  },
+  {
+    item: "celery",
+    price: 3.99,
+    weightInPounds: 2
+  },
+  {
+    item: "carrots",
+    price: 2.85,
+    weightInPounds: 2
+  },
+  {
+    item: "green beans",
+    price: 2.55,
+    weightInPounds: 2
+  }
+];
+var expected = 
+[
+  {
+    item: "rice",
+    price: 12.75,
+    weightInPounds: 20
+  },
+  {
+    item: "chicken",
+    price: 6.99,
+    weightInPounds: 1.25
+  },
+  {
+    item: "celery",
+    price: 3.99,
+    weightInPounds: 2
+  },
+  {
+    item: "carrots",
+    price: 2.85,
+    weightInPounds: 2
+  },
+  {
+    item: "green beans",
+    price: 2.55,
+    weightInPounds: 2
+  }
+];
+
+var acutal = removeMostExpensive(array);
+assert(acutal, expected, 'remove the most expensive item');
+console.log(JSON.stringify(acutal));
+
