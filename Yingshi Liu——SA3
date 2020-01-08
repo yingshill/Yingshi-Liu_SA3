@@ -86,7 +86,7 @@ function removeMostExpensive(array){
       }
     }
   }
-  delete array[mostExpArrInd];
+  array.splice(mostExpArrInd, 1);
   return array;
 }
 
